@@ -1,14 +1,44 @@
-import com.sun.jdi.ShortType;
-
 import java.io.*;
 import java.nio.ByteBuffer;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 public class Main {
     public static void main(String[] args) throws Exception {
-//==============================Write to file  usage=====================
+////==============================Write to file  usage=====================
 //        write2Bytetofile("D:\\mydata2.dat");
-//===============================Read file  usage========================
-        read2Bytefromfile("D:\\mydata2.dat");
+////===============================Read file  usage========================
+//        read2Bytefromfile("D:\\Sunshine\\prs-lib\\data\\5-8-2021\\DATA\\20210805_HOSE_PARAMS.DAT");
+
+//        File path
+//                = new File("D:\\Sunshine\\prs-lib\\data\\5-8-2021\\DATA\\20210805_HOSE_PARAMS.DAT");
+//
+//        // Calling the Method1 in main() to
+//        // convert file to byte array
+//        byte[] array = convertFileToByteArray(path);
+//
+//        // Printing the byte array
+//        System.out.print(Arrays.toString(array));
+//        FileInputStream in = null;
+//        try {
+//            in = new FileInputStream("D:\\Sunshine\\prs-lib\\data\\5-8-2021\\DATA\\20210805_HOSE_PARAMS.DAT");
+//            int ch;
+//            while ((ch = in.read())!=-1){
+//                System.out.print((char)ch);
+//            }
+//        }catch (Exception ex){
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//        }finally {
+//            if(in != null){
+//                try {
+//                    in.close();
+//                }catch (IOException ex){
+//                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        }
     }
 
 
@@ -52,6 +82,7 @@ public class Main {
                 int num = ((buf1[0] & 0xff) << 8) | (buf1[1] & 0xff);
                 System.out.print(num + " ");
 
+
 //--------------------------Đọc theo cách 2
 //            ByteBuffer wrapped = ByteBuffer.wrap(buf1);//gói mảng byte đó vào bộ đệm
 //            int num = Short.toUnsignedInt(wrapped.getShort());
@@ -63,5 +94,27 @@ public class Main {
             e.printStackTrace();
         }
 
+    }
+    public static byte[] convertFileToByteArray(File file)
+            throws IOException
+    {
+
+        // Creating an object of FileInputStream to
+        // read from a file
+        FileInputStream fl = new FileInputStream(file);
+
+        // Now creating byte array of same length as file
+        byte[] arr = new byte[(int)file.length()];
+
+        // Reading file content to byte array
+        // using standard read() method
+        fl.read(arr);
+
+        // lastly closing an instance of file input stream
+        // to avoid memory leakage
+        fl.close();
+
+        // Returning above byte arrray
+        return arr;
     }
 }

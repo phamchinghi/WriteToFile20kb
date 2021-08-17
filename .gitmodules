@@ -1,0 +1,3 @@
+[submodule "WriteToFile20kb"]
+	path = WriteToFile20kb
+	url = https://github.com/phamchinghi/WriteToFile20kb.git
